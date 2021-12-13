@@ -4,7 +4,7 @@ const uuid =  require('uuid');
 
 // GET Route for retrieving all the tips
 notes.get('/', (req, res) => {
-    readFromFile('../db/db.json', 'utf8', (err, data) => {
+    readFromFile("./db/db.json", "utf8", (err, data) => {
         if (err) {
             console.error(err)
         }
@@ -32,11 +32,11 @@ notes.post('/', (req, res) => {
 
 notes.delete('/:noteId', (req, res)=>{
     const noteId=req.params.noteId;
-    readFromFile('../db/db.json', 'utf-8')
+    readFromFile('./db/db.json', 'utf-8')
     .then((data) => (JSON.parse(data))
     .then((json) => {
         const target = json.filter((targetNote) => targetNote.id !== noteId)
-        writeToFile("../db/db.json", target)
+        writeToFile("./db/db.json", target)
     })
     )
 });
